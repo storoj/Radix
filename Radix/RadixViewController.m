@@ -84,7 +84,10 @@ static const RadixDigit RadixDigits[] = {
 
 - (NSString *)convertDecimalValue:(NSInteger)decimalValue toBase:(RadixBase)base
 {
-    RadixDigit result[11];
+    // should be updated to match reality (+ arm64)
+    const NSInteger maxResultLength = 11;
+    
+    RadixDigit result[maxResultLength];
     NSUInteger resultLength = 0;
     
     NSInteger value = decimalValue;
