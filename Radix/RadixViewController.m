@@ -117,56 +117,7 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    switch (row) {
-        case 0:
-            Sys = 2;
-            break;
-        case 1:
-             Sys = 3;
-            break;
-        case 2:
-            Sys = 4;
-            break;
-        case 3:
-             Sys = 5;
-            break;
-        case 4:
-            Sys = 6;
-            break;
-        case 5:
-            Sys = 7;
-            break;
-        case 6:
-            Sys = 8;
-            break;
-        case 7:
-            Sys = 9;
-            break;
-        case 8:
-            Sys = 10;
-            break;
-        case 9:
-            Sys = 11;
-            break;
-        case 10:
-             Sys = 12;
-            break;
-        case 11:
-            Sys = 13;
-            break;
-        case 12:
-             Sys = 14;
-            break;
-        case 13:
-            Sys = 15;
-            break;
-        case 14:
-             Sys = 16;
-            break;
-        default:
-            break;
-    }
-    
+    Sys = row+2;
 }
 
 
