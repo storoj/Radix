@@ -22,6 +22,7 @@
     NSLog(@"Num = %d",Num);
     complete = @" ";
     Out.text = @" ";
+    Sys = 2;
 }
 
 
@@ -35,10 +36,9 @@
 
 -(IBAction)Output{
 
-     complete = @" ";
+    complete = @" ";
     
     int n, LoL, a;
-    
     a = Sys;
     
     for(int i = 0 ;; i++)
