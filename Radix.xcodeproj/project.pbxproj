@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35B6CB8C18A9042700085FF7 /* ico.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B6CB8B18A9042700085FF7 /* ico.png */; };
 		35C416E5189D641000E227FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C416E4189D641000E227FE /* Foundation.framework */; };
 		35C416E7189D641000E227FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C416E6189D641000E227FE /* CoreGraphics.framework */; };
 		35C416E9189D641000E227FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C416E8189D641000E227FE /* UIKit.framework */; };
@@ -21,7 +22,6 @@
 		35C41706189D641000E227FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C416E8189D641000E227FE /* UIKit.framework */; };
 		35C4170E189D641000E227FE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 35C4170C189D641000E227FE /* InfoPlist.strings */; };
 		35C41710189D641000E227FE /* RadixTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C4170F189D641000E227FE /* RadixTests.m */; };
-		35C4171A189D93FD00E227FE /* ico.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C41719189D93FD00E227FE /* ico.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		35B6CB8B18A9042700085FF7 /* ico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico.png; path = Radix/ico.png; sourceTree = "<group>"; };
 		35C416E1189D641000E227FE /* Radix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C416E4189D641000E227FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35C416E6189D641000E227FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,7 +55,6 @@
 		35C4170B189D641000E227FE /* RadixTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RadixTests-Info.plist"; sourceTree = "<group>"; };
 		35C4170D189D641000E227FE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		35C4170F189D641000E227FE /* RadixTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RadixTests.m; sourceTree = "<group>"; };
-		35C41719189D93FD00E227FE /* ico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico.png; path = ../../../Downloads/ico.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,11 +84,11 @@
 		35C416D8189D641000E227FE = {
 			isa = PBXGroup;
 			children = (
+				35B6CB8B18A9042700085FF7 /* ico.png */,
 				35C416EA189D641000E227FE /* Radix */,
 				35C41709189D641000E227FE /* RadixTests */,
 				35C416E3189D641000E227FE /* Frameworks */,
 				35C416E2189D641000E227FE /* Products */,
-				35C41719189D93FD00E227FE /* ico.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,7 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35C416FD189D641000E227FE /* Images.xcassets in Resources */,
-				35C4171A189D93FD00E227FE /* ico.png in Resources */,
+				35B6CB8C18A9042700085FF7 /* ico.png in Resources */,
 				35C416EF189D641000E227FE /* InfoPlist.strings in Resources */,
 				35C416F8189D641000E227FE /* Main.storyboard in Resources */,
 			);
@@ -265,7 +265,6 @@
 			shellScript = "export CODESIGN_ALLOCATE=/Library/JailCoder/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ]; then\n/Library/JailCoder/Entitlements/Entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
-
 
 /* Begin PBXSourcesBuildPhase section */
 		35C416DD189D641000E227FE /* Sources */ = {
