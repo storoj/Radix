@@ -32,7 +32,7 @@
     self = [super init];
     if (self) {
         _base = base;
-        _title = title;
+        _title = [title copy];
     }
     return self;
 }
