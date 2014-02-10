@@ -19,7 +19,7 @@
 
 - (instancetype)initWithBase:(RadixBase)base
 {
-    return [self initWithBase:base title:[NSString stringWithFormat:@"base %u", base]];
+    return [self initWithBase:base title:[NSString stringWithFormat:@"base %lu", (unsigned long)base]];
 }
 
 + (instancetype)entityWithBase:(RadixBase)base
