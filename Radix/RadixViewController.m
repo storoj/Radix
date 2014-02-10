@@ -94,7 +94,7 @@ static const RadixDigit RadixDigits[] = {
         // needs to be reverted later
         result[resultLength++] = RadixDigits[digit];
         
-        value = value / base;
+        value /= base;
     }
     
     if (resultLength == 0) {
