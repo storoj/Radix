@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32A316E318A907910067E285 /* RadixEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A316E218A907910067E285 /* RadixEntity.m */; };
+		32A316E518A9229C0067E285 /* ico.png in Resources */ = {isa = PBXBuildFile; fileRef = 32A316E418A9229C0067E285 /* ico.png */; };
 		35C416E5189D641000E227FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C416E4189D641000E227FE /* Foundation.framework */; };
 		35C416E7189D641000E227FE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C416E6189D641000E227FE /* CoreGraphics.framework */; };
 		35C416E9189D641000E227FE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C416E8189D641000E227FE /* UIKit.framework */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		32A316E118A907910067E285 /* RadixEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadixEntity.h; sourceTree = "<group>"; };
 		32A316E218A907910067E285 /* RadixEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadixEntity.m; sourceTree = "<group>"; };
+		32A316E418A9229C0067E285 /* ico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ico.png; path = Radix/ico.png; sourceTree = "<group>"; };
 		35C416E1189D641000E227FE /* Radix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Radix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C416E4189D641000E227FE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35C416E6189D641000E227FE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,6 +87,7 @@
 		35C416D8189D641000E227FE = {
 			isa = PBXGroup;
 			children = (
+				32A316E418A9229C0067E285 /* ico.png */,
 				35C416EA189D641000E227FE /* Radix */,
 				35C41709189D641000E227FE /* RadixTests */,
 				35C416E3189D641000E227FE /* Frameworks */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35C416FD189D641000E227FE /* Images.xcassets in Resources */,
+				32A316E518A9229C0067E285 /* ico.png in Resources */,
 				35C416EF189D641000E227FE /* InfoPlist.strings in Resources */,
 				35C416F8189D641000E227FE /* Main.storyboard in Resources */,
 			);
