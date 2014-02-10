@@ -7,175 +7,175 @@
 //
 
 #import "RadixViewController.h"
+#import "RadixEntity.h"
 
-@interface RadixViewController ()
+@interface RadixViewController () <UIPickerViewDataSource, UIPickerViewDelegate>
+
+@property (nonatomic, strong) NSArray *radixes;
+@property (nonatomic, weak) IBOutlet UIPickerView *pickerView;
+@property (weak, nonatomic) IBOutlet UITextField *inputNumberTextField;
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 
 @end
 
+typedef unichar RadixDigit;
+
+static const RadixDigit RadixDigits[] = {
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    'a', 'b', 'c', 'd', 'e', 'f'
+};
+
 @implementation RadixViewController
-
-
-- (IBAction)InputNumber {
-    
-    NSString *Number = Number_textField.text;
-    Num=[Number intValue];
-    NSLog(@"Num = %d",Num);
-    complete = @" ";
-    Out.text = @" ";
-}
-
-
-
-/*-(IBAction)InputSystem{
-    NSString *System = System_textField.text; //was TextField "введите число"
-    Sys=[System intValue];
-    NSLog(@"Sys = %d",Sys);
-}
-*/
-
--(IBAction)Output{
-
-     complete = @" ";
-    
-    int n, LoL, a;
-    
-    a = Sys;
-    
-    for(int i = 0 ;; i++)
-    {
-        if( pow(Sys, i) >= Num)
-        {
-            n = i;
-            break;
-        }
-    }
-    
-    char mas[n];
-    int i = 0;
-    
-    while(Num != 0)
-    {
-        LoL = Num % a;
-        switch(LoL)
-        {
-            case(0): mas[i] = '0'; break;
-            case(1): mas[i] = '1'; break;
-            case(2): mas[i] = '2'; break;
-            case(3): mas[i] = '3'; break;
-            case(4): mas[i] = '4'; break;
-            case(5): mas[i] = '5'; break;
-            case(6): mas[i] = '6'; break;
-            case(7): mas[i] = '7'; break;
-            case(8): mas[i] = '8'; break;
-            case(9): mas[i] = '9'; break;
-            case(10): mas[i] = 'A'; break;
-            case(11): mas[i] = 'B'; break;
-            case(12): mas[i] = 'C'; break;
-            case(13): mas[i] = 'D'; break;
-            case(14): mas[i] = 'E'; break;
-            case(15): mas[i] = 'F'; break;                                                                 
-        }
-        Num /= a;
-        i++;
-        }
-    for (i = n ; i>=0; i--) {
-        variable = [NSString stringWithFormat:@"%c",mas[i]];
-        complete = [NSString stringWithFormat:@"%@%@",complete,variable];
-                    
-    }
-    NSLog(@" %@",complete);
-    Out.text = [NSString stringWithFormat:@"%@", complete];
-}
-
-/*- (IBAction)Button {
-    complete = @" ";
-    System_textField.text = @" ";
-    Number_textField.text = @" "; //was Button "Начало"
-    Out.text = @" ";
-}
-*/
-
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    system_array = [[NSArray alloc] initWithObjects:@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12",@"13",@"14",@"15",@"16",nil];
+    
+    [self initRadixes];
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+- (void)initRadixes
+{
+    const RadixBase startBase = 2;
+    const RadixBase endBase = 16;
+    
+    NSMutableArray *radixes = [NSMutableArray arrayWithCapacity:endBase-startBase+1];
+    
+    // adding titles for common used radixes
+    for (NSUInteger base=startBase; base<=endBase; base++) {
+        RadixEntity *entity = nil;
+        switch (base) {
+            case RadixBaseBinary:
+                entity = [RadixEntity entityWithBase:base title:@"Binary"];
+                break;
+                
+            case RadixBaseOctal:
+                entity = [RadixEntity entityWithBase:base title:@"Octal"];
+                break;
+                
+            case RadixBaseDecimal:
+                entity = [RadixEntity entityWithBase:base title:@"Decimal"];
+                break;
+                
+            case RadixBaseHex:
+                entity = [RadixEntity entityWithBase:base title:@"Hex"];
+                break;
+                
+            default:
+                entity = [RadixEntity entityWithBase:base];
+                break;
+        }
+        
+        [radixes addObject:entity];
+    }
+    
+    self.radixes = [radixes copy];
+}
+
+- (NSInteger)convertValueWithStringToDecimal:(NSString *)stringValue fromBase:(RadixBase)base
+{
+    if (base == RadixBaseDecimal) {
+        return [stringValue integerValue];
+    }
+    
+    // TODO
+    return 0;
+}
+
+- (NSString *)convertDecimalValue:(NSInteger)decimalValue toBase:(RadixBase)base
+{
+    RadixDigit result[11];
+    NSUInteger resultLength = 0;
+    
+    NSInteger value = decimalValue;
+    while (value > 0) {
+        NSUInteger digit = value % base;
+        
+        // needs to be reverted later
+        result[resultLength++] = RadixDigits[digit];
+        
+        value = value / base;
+    }
+    
+    if (resultLength == 0) {
+        result[resultLength++] = RadixDigits[0];
+    }
+    
+    // revert result
+    for (NSUInteger i=0; i<resultLength/2; ++i) {
+        const NSUInteger j = resultLength-i-1;
+        
+        RadixDigit tmp = result[i];
+        result[i] = result[j];
+        result[j] = tmp;
+    }
+    
+    return [NSString stringWithCharacters:result length:resultLength];
+}
+
+- (NSString *)convertValueWithString:(NSString *)stringValue
+                            fromBase:(RadixBase)srcBase
+                              toBase:(RadixBase)destBase
+{
+    NSInteger decimalValue = [self convertValueWithStringToDecimal:stringValue fromBase:srcBase];
+    
+    NSString *result = [self convertDecimalValue:decimalValue toBase:destBase];
+    return result;
+}
+
+- (void)updateResult
+{
+    NSString *valueString = [self.inputNumberTextField text];
+    
+    NSInteger selectedRadixRow = [self.pickerView selectedRowInComponent:0];
+    RadixEntity *entity = self.radixes[selectedRadixRow];
+    RadixBase destBase = [entity base];
+    
+    NSString *resultValueString = [self convertValueWithString:valueString
+                                                      fromBase:RadixBaseDecimal
+                                                        toBase:destBase];
+    [self.resultLabel setText:resultValueString];
+}
+
+#pragma mark - Properties
+
+- (void)setRadixes:(NSArray *)radixes
+{
+    _radixes = radixes;
+    
+    [self.pickerView reloadAllComponents];
+}
+
+#pragma mark - Actions
+
+- (IBAction)sourceNumberEditingChanged:(UITextField *)sender
+{
+    [self updateResult];
+}
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return system_array.count;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [system_array objectAtIndex:row];
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    switch (row) {
-        case 0:
-            Sys = 2;
-            break;
-        case 1:
-             Sys = 3;
-            break;
-        case 2:
-            Sys = 4;
-            break;
-        case 3:
-             Sys = 5;
-            break;
-        case 4:
-            Sys = 6;
-            break;
-        case 5:
-            Sys = 7;
-            break;
-        case 6:
-            Sys = 8;
-            break;
-        case 7:
-            Sys = 9;
-            break;
-        case 8:
-            Sys = 10;
-            break;
-        case 9:
-            Sys = 11;
-            break;
-        case 10:
-             Sys = 12;
-            break;
-        case 11:
-            Sys = 13;
-            break;
-        case 12:
-             Sys = 14;
-            break;
-        case 13:
-            Sys = 15;
-            break;
-        case 14:
-             Sys = 16;
-            break;
-        default:
-            break;
-    }
-    
-}
-
-
-- (void)didReceiveMemoryWarning
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return [self.radixes count];
 }
 
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    RadixEntity *entity = self.radixes[(NSUInteger)row];
+    return [entity title];
+}
 
+#pragma mark - UIPickerViewDelegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    [self updateResult];
+}
 
 @end

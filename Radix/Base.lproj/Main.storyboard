@@ -16,52 +16,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введи число" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K5K-MU-bRG">
-                                <rect key="frame" x="67" y="35" width="189" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введи число" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K5K-MU-bRG">
+                                <rect key="frame" x="47" y="28" width="228" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
-                                    <action selector="InputNumber" destination="izq-kV-pjf" eventType="editingDidEndOnExit" id="gQT-wA-HJo"/>
+                                    <action selector="sourceNumberEditingChanged:" destination="izq-kV-pjf" eventType="editingChanged" id="93r-tt-biu"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7o-1o-iuu">
-                                <rect key="frame" x="27" y="233" width="276" height="30"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oF-XQ-3wJ">
+                                <rect key="frame" x="47" y="213" width="54" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Нажми на кнопку получишь результат">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="Output" destination="izq-kV-pjf" eventType="touchUpInside" id="39O-LK-7ft"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oF-XQ-3wJ">
-                                <rect key="frame" x="20" y="278" width="178" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TAa-mJ-ZRc">
-                                <rect key="frame" x="51" y="49" width="228" height="162"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TAa-mJ-ZRc">
+                                <rect key="frame" x="47" y="58" width="228" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="BLf-Hm-XXA"/>
+                                </constraints>
                                 <connections>
-                                    <outlet property="dataSource" destination="izq-kV-pjf" id="hJ7-9K-7Zx"/>
-                                    <outlet property="delegate" destination="izq-kV-pjf" id="NIM-5Q-MqD"/>
+                                    <outlet property="dataSource" destination="izq-kV-pjf" id="k0E-fB-etk"/>
+                                    <outlet property="delegate" destination="izq-kV-pjf" id="jpZ-dU-bWF"/>
                                 </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0oF-XQ-3wJ" firstAttribute="top" secondItem="TAa-mJ-ZRc" secondAttribute="bottom" constant="-7" id="Xmp-kK-hWl"/>
+                            <constraint firstAttribute="trailing" secondItem="K5K-MU-bRG" secondAttribute="trailing" constant="45" id="aj5-9G-Q9y"/>
+                            <constraint firstItem="0oF-XQ-3wJ" firstAttribute="leading" secondItem="koR-eR-TTj" secondAttribute="leading" constant="47" id="fbm-y8-xzR"/>
+                            <constraint firstItem="K5K-MU-bRG" firstAttribute="leading" secondItem="koR-eR-TTj" secondAttribute="leading" constant="47" id="k9E-Oo-o70"/>
+                            <constraint firstAttribute="trailing" secondItem="TAa-mJ-ZRc" secondAttribute="trailing" constant="45" id="nAC-91-m4M"/>
+                            <constraint firstItem="K5K-MU-bRG" firstAttribute="top" secondItem="jit-ol-qwF" secondAttribute="bottom" constant="8" id="t5R-6i-Ry9"/>
+                            <constraint firstItem="TAa-mJ-ZRc" firstAttribute="top" secondItem="K5K-MU-bRG" secondAttribute="bottom" id="uLz-6N-eWp"/>
+                            <constraint firstItem="TAa-mJ-ZRc" firstAttribute="leading" secondItem="koR-eR-TTj" secondAttribute="leading" constant="47" id="z5c-D1-Lqk"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="Number_textField" destination="K5K-MU-bRG" id="Dzk-XC-XBw"/>
-                        <outlet property="Out" destination="0oF-XQ-3wJ" id="jkx-5f-WNB"/>
-                        <outlet property="System_PickerView" destination="TAa-mJ-ZRc" id="5Dg-bR-V6r"/>
+                        <outlet property="inputNumberTextField" destination="K5K-MU-bRG" id="a7S-Kx-BD2"/>
+                        <outlet property="pickerView" destination="TAa-mJ-ZRc" id="r3f-Ga-Xfu"/>
+                        <outlet property="resultLabel" destination="0oF-XQ-3wJ" id="BEF-b5-Tk1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hki-vc-Ht5" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="503" y="236"/>
+            <point key="canvasLocation" x="506" y="313"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
